@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function Student(name,age,address,phone,birthday,subject=[]){
+            this.name = name;
+            this.age = age;
+            this.address =address;
+            this.phone = phone;
+            this.birthday = birthday;
+            this.subject = subject;
+        }
+
+        //FpolyStudent Kế văn thừa obj Student
+        function FpolyStudent(name,age,address,phone,birthday,subject,id,email,avatar,study_major,avgScore){
+            Student.call(this,name,age,address,phone,birthday,subject);
+            this.id = id;
+            this.email = email;
+            this.avatar = avatar;
+            this.study_major = study_major;
+            this.avgScore = avgScore;
+            this.getAvgScore = function(){
+                return this.avgScore;
+            }
+            this.setAvgScore = function(point){
+                this.avgScore = point;
+            }
+            this.changeAddress = function(address){
+                this.address = address;
+            }
+        }
+
+
+
+        var SinhVien1 = new Student('abc xyz',20,'Ha Nội','0123456789','20-11-2020',[
+            {
+                name: "JS nâng cao",
+                teacher: "Sơn dt",
+                point: 10,
+                year: "2020"
+            }
+        ]);
+
+        var SinhVien2 = new FpolyStudent('abc ABC',30,'HCM','0123456789','20-12-2020',[
+            {
+                name: "JS nâng cao 1",
+                teacher: "Sơn dt 1",
+                point: 10,
+                year: "2020"
+            }
+        ],
+        123,'vuongxang@gmail.com','avatar.png','php',10);
+
+
+        console.log(SinhVien1);
+        console.log(SinhVien2);
+        console.log(SinhVien2.getAvgScore());
+    </script>
+</body>
+</html>

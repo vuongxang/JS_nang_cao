@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+
+</head>
+
+<body>
+    <div class="container">
+        <form action="" method="post" id="add-form" class="form-froup">
+            <label for="">1st Person Name</label>
+            <input type="text" id="person-name1">
+            <br>
+            <label for="">1st Person Age</label>
+            <input type="number" id="person-age1">
+            <br>
+            <label for="">1st Person Address</label>
+            <input type="text" id="person-address1">
+            <br>
+
+            <label for="">2st Person Name</label>
+            <input type="text" id="person-name2">
+            <br>
+            <label for="">2st Person Age</label>
+            <input type="number" id="person-age2">
+            <br>
+            <label for="">2st Person Address</label>
+            <input type="text" id="person-address2">
+            <br>
+            <button type="submit">Show profile</button>
+        </form>
+        <ul id="show-profile">
+
+        </ul>
+    </div>
+    <script>
+
+        //hàm check rỗng
+        function checkNull(element) {
+            if (!element.value) {
+
+                element.focus();
+                element.style.outlineColor = "red";
+                alert('Vui lòng không bỏ trống');
+                return false;
+            }
+            return true;
+        }
+        //Hàm kiểm tra số > 0
+        function checkNumber(element) {
+            if (!isNaN(element.value) && element.value<=0 ) {
+
+                element.focus();
+                element.style.outlineColor = "red";
+                alert('Vui lòng nhập số >0');
+                return false;
+            }
+            return true;
+        }
+
+        //Khai báo obj person
+        var Person = {
+            name: "An",
+            age: 20,
+            address: "Hà Nội",
+            showProfile: function () {
+                return `<li>Name: ${this.name}- Age: ${this.age} - Adress: ${this.address}</li>`;
+            }
+        }
+
+        arr = [];
+        const $ = document.querySelector.bind(document);
+        const $$ = document.querySelectorAll.bind(document);
+
+        //Check sự kiện submit form
+        $('#add-form').addEventListener('submit', function (e) {
+            e.preventDefault();
+            if (checkNull($('#person-name1'))&&checkNumber($('#person-age1')) && checkNull($('#person-address1')) && checkNull($('#person-name2')) &&checkNumber($('#person-age2'))&& checkNull($('#person-address2'))) {
+                var FirstPerson = {
+                    _proto_: Person
+                }
+
+                //Gán giá trị cho firstPerson
+                FirstPerson._proto_.name = $('#person-name1').value;
+                FirstPerson._proto_.age = $('#person-age1').value;
+                FirstPerson._proto_.address = $('#person-address1').value;
+                arr.push(FirstPerson._proto_.showProfile());
+
+                var SecondPerson = {
+                    _proto_: Person
+                }
+                //Gán giá trị cho SecondPerson
+                SecondPerson._proto_.name = $('#person-name2').value;
+                SecondPerson._proto_.age = $('#person-age2').value;
+                SecondPerson._proto_.address = $('#person-address2').value;
+                arr.push(SecondPerson._proto_.showProfile());
+                console.log(arr);
+                $('#show-profile').innerHTML = arr.join("");
+            }
+        });
+
+
+    </script>
+</body>
+
+</html>

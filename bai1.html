@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var SinhVien = {
+            id: 1,
+            fullname: "Lương Quốc Vương",
+            email: "vuongxang@gmail.com",
+            avatar: "http://lorempixel.com/640/480/city",
+            address: "Hà Nội",
+            study_major: "ABC",
+            avgScore: 8,
+            getAvgScore = function(){
+                return this.avgScore;
+            },
+            setAvgScore = function(score){
+                this.avgScore = score;
+            },
+            changeAddress = function(address){
+                this.address = address;
+            }
+        }
+
+        console.log(SinhVien);
+    </script>
+</body>
+</html>
